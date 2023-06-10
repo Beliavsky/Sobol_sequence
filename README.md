@@ -3,7 +3,7 @@ Experiment with the quasi-random Sobol sequence, using John Burkardt's [code](ht
 
 `gfortran kind.f90 stats.f90 sobol.f90 xsobol.f90`
 
-Below are sample results with gfortan. The Sobol variate fill the domain (0,1) more uniformly than the `random_number()` intrinsic.
+Below are sample results with gfortran. The Sobol variate fill the domain (0,1) more uniformly than the `random_number()` intrinsic.
 
 ```
  #obs =              1000000
