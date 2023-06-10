@@ -1,2 +1,26 @@
 # Sobol_sequence
-Experiment with the quasi-random Sobol sequence, using John Burkardt's [code](https://people.sc.fsu.edu/~jburkardt/f_src/sobol/sobol.html)
+Experiment with the quasi-random Sobol sequence, using John Burkardt's [code](https://people.sc.fsu.edu/~jburkardt/f_src/sobol/sobol.html). Compile with
+
+`gfortran kind.f90 stats.f90 sobol.f90 xsobol.f90`
+
+Below are sample results with gfortan. The Sobol variate fill the domain (0,1) more uniformly than the `random_number()` intrinsic.
+
+```
+ #obs =              1000000
+
+random number type: Sobol  
+      mean        sd    dev_sq    counts
+  0.499999  0.288675        12    100002     99999    100000    100000     99999    100002     99999    100000    100000     99999
+  0.500000  0.288675         8     99999    100001    100001     99999    100000     99999    100001    100001     99999    100000
+  0.500001  0.288675        16     99999     99999    100001     99999    100002     99999     99999    100001     99999    100002
+  0.499999  0.288675        48    100001    100001     99998    100003     99997    100001    100001     99998    100003     99997
+  0.500000  0.288675        12    100000     99999    100002     99999    100000    100000     99999    100002     99999    100000
+
+random number type: uniform
+      mean        sd    dev_sq    counts
+  0.500224  0.288827   1086730    100306     99931     99301    100082    100158     99800     99626    100358    100398    100040
+  0.499652  0.288773    702810    100157    100232    100194    100241     99922     99563    100079     99582    100289     99741
+  0.499685  0.288375   1316988     99575     99955    100343    100427    100202    100305    100361     99839     99360     99633
+  0.499627  0.288854   1410938    100005    100543    100662    100004     99449     99563     99899     99970     99663    100242
+  0.500141  0.288851   1044024    100261    100147     99616     99527    100439     99571     99844    100339     99997    100259
+```
