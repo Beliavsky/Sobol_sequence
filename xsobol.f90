@@ -15,20 +15,20 @@ print*,"#obs =",nobs
 xthresh = [(i, i=1,nbins)]/real(nbins, kind=dp)
 seed = 0
 do iran_type=1,2
-print "(/,a,a)", "random number type: ", merge("Sobol  ", "uniform", iran_type==1)
-write (*,"(*(a10))") "mean", "sd", "dev_sq", "counts"
-do iter=1, niter
-   do i=1,nobs
-      if (iran_type == 1) then
-         call i8_sobol(dim_num, seed, xmat(:, i))
-      else
-         call random_number(xmat(:, i))
-      end if
+   print "(/,a,a)", "random number type: ", merge("Sobol  ", "uniform", iran_type==1)
+   write (*,"(*(a10))") "mean", "sd", "dev_sq", "counts"
+   do iter=1, niter
+      do i=1,nobs
+         if (iran_type == 1) then
+            call i8_sobol(dim_num, seed, xmat(:, i))
+         else
+            call random_number(xmat(:, i))
+         end if
+      end do
+      x = xmat(1, :)
+      if (print_x) print*,x
+      counts = bin_counts(x, xthresh)
+      print "(2f10.6, *(i10))", mean(x), sd(x), sum((counts(:nbins)-counts_exp)**2), counts(:nbins)
    end do
-   x = xmat(1, :)
-   if (print_x) print*,x
-   counts = bin_counts(x, xthresh)
-   print "(2f10.6, *(i10))", mean(x), sd(x), sum((counts(:nbins)-counts_exp)**2), counts(:nbins)
-end do
 end do
 end program main
